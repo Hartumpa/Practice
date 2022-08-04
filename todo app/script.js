@@ -1,23 +1,38 @@
 
-let ram=JSON.parse(localStorage.getItem("as")) || [];
 
 window.addEventListener("load", () => {
+    todos = JSON.parse(localStorage.getItem("todos")) || [];
     let form = document.querySelector("#new-task-form")
     let input = document.querySelector("#new-task-input")
-    let list_el = document.querySelector("#tasks")
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        let task = input.value;
-        ram.push(task)
-        localStorage.setItem("as",JSON.stringify(ram));
-
-        if (!task) {
-            alert("Please add task!");
-            return;
+        let todo = {
+            content: input.value,
+            // createdAt: new Date().getTime()
         }
 
+        todos.push(todo)
+        console.log(todos)
+        localStorage.setItem("todos", JSON.stringify(todos));
+
+        e.target.reset();
+
+        Display();
+
+    });
+
+      Display();
+});
+
+
+function Display() {
+    let list_el = document.querySelector("#tasks");
+
+    list_el.innerHTML = "";
+
+    todos.forEach(todo => {
         let task_el = document.createElement("div");
         task_el.classList.add("task");
 
@@ -29,7 +44,7 @@ window.addEventListener("load", () => {
         let task_input_el = document.createElement("input");
         task_input_el.classList.add("text");
         task_input_el.type = "text"
-        task_input_el.value = task;
+        task_input_el.value = todo.content;
         task_input_el.setAttribute("readonly", "readonly");
 
         task_content_el.appendChild(task_input_el);
@@ -39,7 +54,7 @@ window.addEventListener("load", () => {
 
         let task_edit_el = document.createElement("button");
         task_edit_el.classList.add("edit");
-        task_edit_el.innerText = "Edit"
+        task_edit_el.innerText = "edit"
 
         let task_delete_el = document.createElement("button")
         let insi = document.createElement("i");
@@ -54,21 +69,31 @@ window.addEventListener("load", () => {
 
         list_el.appendChild(task_el);
 
-        input.value = "";
 
         task_edit_el.addEventListener("click", () => {
             if (task_edit_el.innerText.toLowerCase() == "edit") {
                 task_input_el.removeAttribute("readonly");
+                localStorage.setItem("todos", JSON.stringify(todos));
                 task_input_el.focus();
+                task_input_el.addEventListener("blur",(e)=>{
+                    task_input_el.setAttribute("readonly",true);
+                    todo.content=e.target.value
+                    localStorage.setItem("todos", JSON.stringify(todos));
+                })
                 task_edit_el.innerText = "Save"
             } else {
                 task_input_el.setAttribute("readonly", "readonly");
                 task_edit_el.innerText = "Edit";
+                localStorage.setItem("todos", JSON.stringify(todos));
             }
+            // Display();
         })
 
         task_delete_el.addEventListener("click", () => {
-            list_el.removeChild(task_el);
+            todos=todos.filter(t=>t!=todo);
+            localStorage.setItem("todos", JSON.stringify(todos));
+            Display();
         });
-    });
-});
+    })
+}
+
