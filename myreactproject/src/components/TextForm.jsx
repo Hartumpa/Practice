@@ -45,7 +45,7 @@ export default function TextForm(props) {
 
 
   const [text, setText] = useState("Enter text here");
-  const [sel,setSel] = useState(false)
+  // const [sel,setSel] = useState(false)
 //   text="new hi" //Wrong way
 //   setText("hi") // Correct way
 // const styles={
