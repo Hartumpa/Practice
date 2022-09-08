@@ -1,8 +1,23 @@
 import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
+import PropTypes from 'prop-types'
+
 
 export class News extends Component {
+
+    static defaultProps = {
+        country: 'in',
+        pageSize:6,
+        category:"general"
+      }
+
+    static propTypes = {
+        country: PropTypes.string,
+        pageSize:PropTypes.number,
+        category:PropTypes.string
+      }
+
   constructor() {
     super();
     this.state = {
@@ -15,7 +30,7 @@ export class News extends Component {
   async componentDidMount() {
     // it will run after render
 
-    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=0a19da5802404934862e464430aeab8b&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=18fd15ceea464a41b3a6e184e838e65c&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let res = await data.json();
@@ -27,7 +42,7 @@ export class News extends Component {
   }
 
   preClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=0a19da5802404934862e464430aeab8b&page=${
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=18fd15ceea464a41b3a6e184e838e65c&page=${
       this.setState.page - 1
     }&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
@@ -41,7 +56,7 @@ export class News extends Component {
   };
 
   nextClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=0a19da5802404934862e464430aeab8b&page=${
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=18fd15ceea464a41b3a6e184e838e65c&page=${
       this.setState.page + 1
     }&pageSize=${this.props.pageSize}`;
      this.setState({ loading: true });
@@ -70,6 +85,9 @@ export class News extends Component {
                   }
                   imageUrl={ele.urlToImage}
                   newsUrl={ele.url}
+                  author={ele.author}
+                  date={ele.publishedAt}
+                  source={ele.source.name}
                 />
               </div>
             );
