@@ -1,34 +1,39 @@
-import { useState } from "react";
+// import { useState } from "react";
 import React from "react";
 
-export default function About() {
+export default function About(props) {
 
-    const [myStyle,setmyStyle]=useState({
-        color:"white",
-        backgroundColor:"black"
-    });
+    // const [myStyle,setmyStyle]=useState({
+    //     color:"white",
+    //     backgroundColor:"black"
+    // });
 
-    const [btnText,setmyBtnText]=useState("Enable Light Mode")
-
-const toggleStyle=()=>{
-    if(myStyle.color==="black"){
-        setmyStyle({
-            color:"white",
-            backgroundColor:"black",
-            border:"2px solid white"
-        })
-        setmyBtnText("Enable Light Mode")
-    }else{
-        setmyStyle({
-            color:"black",
-            backgroundColor:"white"
-        })
-        setmyBtnText("Enable Dark Mode")
+    let myStyle={
+      color: props.mode==="dark"?"white":"#042743",
+      backgroundColor:props.mode==="dark"?"#042743":"white",
     }
-}
+
+    // const [btnText,setmyBtnText]=useState("Enable Light Mode")
+
+// const toggleStyle=()=>{
+//     if(myStyle.color==="black"){
+//         setmyStyle({
+//             color:"white",
+//             backgroundColor:"black",
+//             border:"2px solid white"
+//         })
+//         setmyBtnText("Enable Light Mode")
+//     }else{
+//         setmyStyle({
+//             color:"black",
+//             backgroundColor:"white"
+//         })
+//         setmyBtnText("Enable Dark Mode")
+//     }
+// }
 
   return (
-    <div className="container" style={myStyle}>
+    <div className="container" style={{color: props.mode==="dark"?"white":"#042743"}}>
         <h1 className="my-3">About Us</h1>
       <div className="accordion" id="accordionExample">
         <div className="accordion-item">
@@ -128,7 +133,7 @@ const toggleStyle=()=>{
           </div>
         </div>
       </div>
-      <button type="button" className="btn btn-primary" onClick={toggleStyle}>{btnText}</button>
+      {/* <button type="button" className="btn btn-primary" >Enable DarkMode</button> */}
     </div>
   );
 }

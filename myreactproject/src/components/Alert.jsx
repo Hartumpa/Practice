@@ -2,7 +2,8 @@ import React from "react";
 
 export default function Alert(props) {
   return (
-    props.alert && <div
+    <div style={{height:"50px"}}>
+    {props.alert && <div
         className={`alert alert-${props.alert.type} alert-dismissible fade show`}
         role="alert" style={{color:props.mode==="dark"?"white":"green",backgroundColor:props.mode==="dark"?"white":"yellow"}}
       >
@@ -13,6 +14,7 @@ export default function Alert(props) {
           data-bs-dismiss="alert"
           aria-label="Close"
         ></button>
+      </div>}
       </div>
     
   );
