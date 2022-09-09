@@ -16,8 +16,7 @@ export default class App extends Component {
   apiKey="18fd15ceea464a41b3a6e184e838e65c";
 
   state={
-    progress:0
-    //p
+    progress:0;
   }
 
   setProgress=(progress)=>{
