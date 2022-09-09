@@ -17,6 +17,7 @@ export default class App extends Component {
 
   state={
     progress:0
+    //p
   }
 
   setProgress=(progress)=>{
