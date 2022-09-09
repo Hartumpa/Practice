@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin</title>
+</head>
+<body>
+    <h1>Promises</h1>
+    <div>
+        <img id="done" src="https://i.pinimg.com/originals/70/a5/52/70a552e8e955049c8587b2d7606cd6a6.gif" alt="">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif?20170503175831" id="pay_img" alt="">
+    </div>
+</body>
+</html>
+<script>
+    let p=new Promise((resolve,reject)=>{
+        resolve();
+        reject();
+    });
+    console.log(`P : ${p}`);
+    console.log(p);
+</script>

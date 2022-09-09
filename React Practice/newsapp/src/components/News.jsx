@@ -8,7 +8,7 @@ export class News extends Component {
   static defaultProps = {
     country: "in",
     pageSize: 6,
-    category: "general",
+    category: "entertainment",
     totalResults: 0,
   };
 
@@ -82,7 +82,7 @@ export class News extends Component {
   render() {
     return (
       <>
-        <h1 className="mb-4 text-center mt-4">
+        <h1 className="mb-4 text-center" style={{marginTop:"4.2rem"}}>
           NewsGuggi - Top Headline from{" "}
           {this.capitalizeFirstLetter(this.props.category)} Headlines
         </h1>
