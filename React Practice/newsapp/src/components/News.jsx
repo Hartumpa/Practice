@@ -86,8 +86,8 @@ export class News extends Component {
           NewsGuggi - Top Headline from{" "}
           {this.capitalizeFirstLetter(this.props.category)} Headlines
         </h1>
-        {/* {this.state.loading && <Spinner />} */}
-        <InfiniteScroll
+        {this.state.loading && <Spinner />}
+        {/* <InfiniteScroll
           dataLength={this.state.articles.length}
           next={this.fetchMoreData}
           hasMore={this.state.articles.length !== this.state.totalResults}
@@ -114,8 +114,8 @@ export class News extends Component {
               })}
             </div>
           </div>
-        </InfiniteScroll>
-        {/* <div className="row">
+        </InfiniteScroll> */}
+        <div className="row">
           {!this.state.loading &&
             this.state.articles.map((ele) => {
               return (
@@ -134,8 +134,8 @@ export class News extends Component {
                 </div>
               );
             })}
-        </div> */}
-        {/* <div className="container d-flex justify-content-between">
+        </div>
+        <div className="container d-flex justify-content-between">
           <button
             type="button"
             className="btn btn-dark"
@@ -156,7 +156,7 @@ export class News extends Component {
           >
             Next &rarr;
           </button>
-        </div> */}
+        </div>
       </>
     );
   }
